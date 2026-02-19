@@ -2,6 +2,7 @@ import { createSignal } from "solid-js";
 import logo from "./assets/logo.svg";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
+import Message from "./components/message";
 
 function App() {
   const [greetMsg, setGreetMsg] = createSignal("");
@@ -44,6 +45,8 @@ function App() {
         <button type="submit">Greet</button>
       </form>
       <p>{greetMsg()}</p>
+
+      <Message messageBody="This is a message component" />
     </main>
   );
 }
