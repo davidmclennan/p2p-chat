@@ -12,13 +12,15 @@ function App() {
 
   return (
     <main class="h-dvh p-8 bg-white dark:bg-slate-900 ">
-      <For each={messages()}>
-        {(item) =>
-          <li>
-            <Message username={item.username} messageBody={item.messageBody} />
-          </li>
-        }
-      </For>
+      <ul class="flex flex-col gap-4">
+        <For each={messages()}>
+          {(item) =>
+            <li>
+              <Message username={item.username} messageBody={item.messageBody} />
+            </li>
+          }
+        </For>
+      </ul>
     </main>
   );
 }
