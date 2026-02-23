@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@tabler/icons-solidjs": "^3.37.1",
     "@tailwindcss/vite": "^4.2.0",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-opener": "^2",

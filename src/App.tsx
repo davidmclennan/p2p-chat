@@ -4,6 +4,7 @@ import { createSignal, createEffect, For } from "solid-js";
 import Message, { MessageProps } from "./components/Message";
 import Input from "./components/Input";
 import Button from "./components/Button";
+import { IconSend2, IconPaperclip, IconMoodNeutral } from "@tabler/icons-solidjs";
 
 function App() {
   const [messages, setMessages] = createSignal<Array<MessageProps>>();
@@ -26,9 +27,15 @@ function App() {
       </ul>
       <div class="flex gap-2 bg-white p-4 rounded-xl">
         <Input text={inputText()} onInput={setInputText} />
-        <Button text="📎" />
-        <Button text="😀" />
-        <Button text="Send" />
+        <Button>
+          <IconPaperclip />
+        </Button>
+        <Button>
+          <IconMoodNeutral />
+        </Button>
+        <Button>
+          <IconSend2 />
+        </Button>
       </div>
     </main>
   );
