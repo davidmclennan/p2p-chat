@@ -2,7 +2,7 @@ import { Component } from "solid-js";
 
 export interface InputProps {
   text: string;
-  onInput: (value: string) => void;
+  onInput: (_value: string) => void;
 }
 
 const Input: Component<InputProps> = (props) => {

@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import solid from "eslint-plugin-solid/configs/typescript";
 import * as tsParser from "@typescript-eslint/parser";
+import globals from "globals";
 
 export default [
   js.configs.recommended,
@@ -10,8 +11,15 @@ export default [
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        project: "tsconfig.json",
+        project: ["tsconfig.json", "tsconfig.node.json"],
       },
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+      },
+    },
+    rules: {
+      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
     },
   },
 ];
