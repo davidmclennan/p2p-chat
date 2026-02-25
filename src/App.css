@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary-500: var(--color-orange-500);
+  --color-primary-700: var(--color-orange-700);
+}
