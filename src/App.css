@@ -1,6 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-500: var(--color-orange-500);
-  --color-primary-700: var(--color-orange-700);
+  --color-brand-500: var(--color-orange-500);
+  --color-brand-700: var(--color-orange-700);
+  --color-canvas: var(--color-zinc-400);
+  --color-surface: var(--color-zinc-300);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-canvas: var(--color-zinc-900);
+    --color-surface: var(--color-zinc-800);
+  }
 }

@@ -21,30 +21,32 @@ function App() {
   });
 
   return (
-    <main class="h-dvh p-8 bg-white dark:bg-slate-900 ">
-      <ul class="flex flex-col gap-4">
-        <For each={messages()}>
-          {(item) => (
-            <li>
-              <Message
-                username={item.username}
-                messageBody={item.messageBody}
-              />
-            </li>
-          )}
-        </For>
-      </ul>
-      <div class="flex gap-2 bg-white p-4 rounded-xl">
-        <Input text={inputText()} onInput={setInputText} />
-        <Button>
-          <IconPaperclip />
-        </Button>
-        <Button>
-          <IconMoodNeutral />
-        </Button>
-        <Button>
-          <IconSend2 />
-        </Button>
+    <main class="h-dvh bg-canvas">
+      <div class="h-dvh flex flex-col p-8 gap-8">
+        <ul class="flex flex-col gap-4 overflow-y-auto">
+          <For each={messages()}>
+            {(item) => (
+              <li>
+                <Message
+                  username={item.username}
+                  messageBody={item.messageBody}
+                />
+              </li>
+            )}
+          </For>
+        </ul>
+        <div class="flex gap-2 bg-surface p-4 rounded-xl mt-auto">
+          <Input text={inputText()} onInput={setInputText} />
+          <Button type="text">
+            <IconPaperclip />
+          </Button>
+          <Button type="text">
+            <IconMoodNeutral />
+          </Button>
+          <Button type="filled">
+            <IconSend2 />
+          </Button>
+        </div>
       </div>
     </main>
   );
