@@ -1,6 +1,6 @@
 import "./App.css";
 import { invoke } from "@tauri-apps/api/core";
-import { createSignal, createEffect, For } from "solid-js";
+import { createSignal, For } from "solid-js";
 import Message, { MessageProps } from "./components/Message";
 import Input from "./components/Input";
 import Button from "./components/Button";
@@ -14,11 +14,19 @@ function App() {
   const [messages, setMessages] = createSignal<Array<MessageProps>>();
   const [inputText, setInputText] = createSignal<string>("");
 
-  createEffect(() => {
+  const sendMessage = (message: MessageProps) => {
+    invoke("send_message", {
+      message: message,
+    });
+    setInputText("");
+    getMessages();
+  };
+
+  const getMessages = () => {
     invoke<Array<MessageProps>>("get_messages").then((response) =>
       setMessages(response),
     );
-  });
+  };
 
   return (
     <main class="h-dvh bg-canvas">
@@ -43,7 +51,12 @@ function App() {
           <Button type="text">
             <IconMoodNeutral />
           </Button>
-          <Button type="filled">
+          <Button
+            type="filled"
+            onClick={() =>
+              sendMessage({ username: "User", messageBody: inputText() })
+            }
+          >
             <IconSend2 />
           </Button>
         </div>
