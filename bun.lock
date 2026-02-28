@@ -12,6 +12,7 @@
         "eslint": "^10.0.1",
         "eslint-plugin-solid": "^0.14.5",
         "globals": "^17.3.0",
+        "solid-emoji-picker": "^0.3.0",
         "solid-js": "^1.9.3",
         "tailwindcss": "^4.2.0",
       },
@@ -492,6 +493,8 @@
     "shebang-command": ["shebang-command@2.0.0", "", { "dependencies": { "shebang-regex": "^3.0.0" } }, "sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA=="],
 
     "shebang-regex": ["shebang-regex@3.0.0", "", {}, "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A=="],
+
+    "solid-emoji-picker": ["solid-emoji-picker@0.3.0", "", { "peerDependencies": { "solid-js": "^1.2" } }, "sha512-wUntdHCfI9wNlRFu9mMUxUT/BkhR1RRmkfbPjPeNWXqDKqQIiVjQ3GzVkaU9KY3GrYuQRyQDGuf88f0FFGK2lw=="],
 
     "solid-js": ["solid-js@1.9.11", "", { "dependencies": { "csstype": "^3.1.0", "seroval": "~1.5.0", "seroval-plugins": "~1.5.0" } }, "sha512-WEJtcc5mkh/BnHA6Yrg4whlF8g6QwpmXXRg4P2ztPmcKeHHlH4+djYecBLhSpecZY2RRECXYUwIc/C2r3yzQ4Q=="],
 

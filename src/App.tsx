@@ -9,10 +9,13 @@ import {
   IconPaperclip,
   IconMoodNeutral,
 } from "@tabler/icons-solidjs";
+import { EmojiPicker, Emoji } from "solid-emoji-picker";
+import Modal from "./components/Modal";
 
 function App() {
   const [messages, setMessages] = createSignal<Array<MessageProps>>();
   const [inputText, setInputText] = createSignal<string>("");
+  const [showEmojiPicker, setShowEmojiPicker] = createSignal<boolean>(false);
 
   const sendMessage = (message: MessageProps) => {
     invoke("send_message", {
@@ -39,6 +42,11 @@ function App() {
     getMessages();
   };
 
+  const handleEmojiClick = (emoji: Emoji) => {
+    setInputText(inputText() + emoji.emoji);
+    setShowEmojiPicker(false);
+  };
+
   return (
     <main class="h-dvh bg-canvas">
       <div class="h-dvh flex flex-col p-8 gap-8">
@@ -62,7 +70,10 @@ function App() {
           <Button type="text">
             <IconPaperclip />
           </Button>
-          <Button type="text">
+          <Button
+            type="text"
+            onClick={() => setShowEmojiPicker(!showEmojiPicker())}
+          >
             <IconMoodNeutral />
           </Button>
           <Show when={inputText()}>
@@ -71,6 +82,11 @@ function App() {
             </Button>
           </Show>
         </form>
+        <Show when={showEmojiPicker()}>
+          <Modal>
+            <EmojiPicker onEmojiClick={handleEmojiClick} />
+          </Modal>
+        </Show>
       </div>
     </main>
   );
