@@ -1,6 +1,6 @@
 import "./App.css";
 import { invoke } from "@tauri-apps/api/core";
-import { createSignal, For } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import Message, { MessageProps } from "./components/Message";
 import Input from "./components/Input";
 import Button from "./components/Button";
@@ -65,9 +65,11 @@ function App() {
           <Button type="text">
             <IconMoodNeutral />
           </Button>
-          <Button type="filled" submit>
-            <IconSend2 />
-          </Button>
+          <Show when={inputText()}>
+            <Button type="filled" submit>
+              <IconSend2 />
+            </Button>
+          </Show>
         </form>
       </div>
     </main>
