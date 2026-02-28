@@ -18,14 +18,25 @@ function App() {
     invoke("send_message", {
       message: message,
     });
-    setInputText("");
-    getMessages();
   };
 
   const getMessages = () => {
     invoke<Array<MessageProps>>("get_messages").then((response) =>
       setMessages(response),
     );
+  };
+
+  const handleSubmit = (e: SubmitEvent) => {
+    e.preventDefault();
+    if (!inputText()) return;
+
+    sendMessage({
+      username: "Test User",
+      messageBody: inputText(),
+    });
+
+    setInputText("");
+    getMessages();
   };
 
   return (
@@ -43,7 +54,10 @@ function App() {
             )}
           </For>
         </ul>
-        <div class="flex gap-2 bg-surface p-4 rounded-xl mt-auto">
+        <form
+          class="flex gap-2 bg-surface p-4 rounded-xl mt-auto"
+          onSubmit={handleSubmit}
+        >
           <Input text={inputText()} onInput={setInputText} />
           <Button type="text">
             <IconPaperclip />
@@ -51,15 +65,10 @@ function App() {
           <Button type="text">
             <IconMoodNeutral />
           </Button>
-          <Button
-            type="filled"
-            onClick={() =>
-              sendMessage({ username: "User", messageBody: inputText() })
-            }
-          >
+          <Button type="filled" submit>
             <IconSend2 />
           </Button>
-        </div>
+        </form>
       </div>
     </main>
   );
