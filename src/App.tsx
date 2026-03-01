@@ -11,6 +11,7 @@ import {
 } from "@tabler/icons-solidjs";
 import { EmojiPicker, Emoji } from "solid-emoji-picker";
 import Dialog from "./components/Dialog";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   const [messages, setMessages] = createSignal<Array<MessageProps>>();
@@ -48,45 +49,48 @@ function App() {
   };
 
   return (
-    <main class="h-dvh bg-canvas">
-      <div class="h-dvh flex flex-col p-8 gap-8">
-        <ul class="flex flex-col overflow-y-auto">
-          <For each={messages()}>
-            {(item) => (
-              <li>
-                <Message
-                  username={item.username}
-                  messageBody={item.messageBody}
-                />
-              </li>
-            )}
-          </For>
-        </ul>
-        <form
-          class="flex gap-2 bg-surface p-4 rounded-xl mt-auto"
-          onSubmit={handleSubmit}
-        >
-          <Input text={inputText()} onInput={setInputText} />
-          <Button type="text">
-            <IconPaperclip />
-          </Button>
-          <Button
-            type="text"
-            onClick={() => setShowEmojiPicker(!showEmojiPicker())}
+    <div class="bg-canvas flex w-screen h-screen">
+      <Sidebar />
+      <main class="flex-1">
+        <div class="flex flex-col h-full p-8 gap-8">
+          <ul class="overflow-y-auto">
+            <For each={messages()}>
+              {(item) => (
+                <li>
+                  <Message
+                    username={item.username}
+                    messageBody={item.messageBody}
+                  />
+                </li>
+              )}
+            </For>
+          </ul>
+          <form
+            class="flex gap-2 bg-surface p-4 rounded-xl mt-auto"
+            onSubmit={handleSubmit}
           >
-            <IconMoodNeutral />
-          </Button>
-          <Show when={inputText()}>
-            <Button type="filled" submit>
-              <IconSend2 />
+            <Input text={inputText()} onInput={setInputText} />
+            <Button type="text">
+              <IconPaperclip />
             </Button>
-          </Show>
-        </form>
+            <Button
+              type="text"
+              onClick={() => setShowEmojiPicker(!showEmojiPicker())}
+            >
+              <IconMoodNeutral />
+            </Button>
+            <Show when={inputText()}>
+              <Button type="filled" submit>
+                <IconSend2 />
+              </Button>
+            </Show>
+          </form>
+        </div>
         <Dialog>
           <EmojiPicker onEmojiClick={handleEmojiClick} />
         </Dialog>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
 

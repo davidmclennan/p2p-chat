@@ -9,7 +9,11 @@ interface ButtonProps {
 const Button: ParentComponent<ButtonProps> = (props) => {
   return (
     <button
-      class={`${props.type === "filled" ? "bg-brand hover:bg-brand-darker text-white" : "bg-transparent text-brand hover:text-brand-darker"} font-bold py-2 px-4 rounded-full`}
+      class={`${
+        props.type === "filled"
+          ? "bg-brand hover:bg-brand-darker text-white"
+          : "bg-transparent text-gray-400 hover:text-gray-500"
+      } font-bold py-2 px-4 rounded-full`}
       onClick={props.onClick}
       type={props.submit ? "submit" : "button"}
     >
