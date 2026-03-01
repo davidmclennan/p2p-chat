@@ -10,7 +10,7 @@ import {
   IconMoodNeutral,
 } from "@tabler/icons-solidjs";
 import { EmojiPicker, Emoji } from "solid-emoji-picker";
-import Modal from "./components/Modal";
+import Dialog from "./components/Dialog";
 
 function App() {
   const [messages, setMessages] = createSignal<Array<MessageProps>>();
@@ -82,11 +82,9 @@ function App() {
             </Button>
           </Show>
         </form>
-        <Show when={showEmojiPicker()}>
-          <Modal>
-            <EmojiPicker onEmojiClick={handleEmojiClick} />
-          </Modal>
-        </Show>
+        <Dialog>
+          <EmojiPicker onEmojiClick={handleEmojiClick} />
+        </Dialog>
       </div>
     </main>
   );
