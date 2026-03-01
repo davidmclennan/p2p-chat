@@ -50,7 +50,7 @@ function App() {
   return (
     <main class="h-dvh bg-canvas">
       <div class="h-dvh flex flex-col p-8 gap-8">
-        <ul class="flex flex-col gap-4 overflow-y-auto">
+        <ul class="flex flex-col overflow-y-auto">
           <For each={messages()}>
             {(item) => (
               <li>
