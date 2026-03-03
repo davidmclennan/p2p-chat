@@ -45,7 +45,7 @@ function App() {
 
   const handleEmojiClick = (emoji: Emoji) => {
     setInputText(inputText() + emoji.emoji);
-    dialogRef?.close();
+    dialogRef.close();
   };
 
   return (
@@ -73,7 +73,7 @@ function App() {
             <Button type="text">
               <IconPaperclip />
             </Button>
-            <Button type="text" onClick={() => dialogRef?.showModal()}>
+            <Button type="text" onClick={() => dialogRef.showModal()}>
               <IconMoodNeutral />
             </Button>
             <Show when={inputText()}>
@@ -84,7 +84,7 @@ function App() {
           </form>
         </div>
       </main>
-      <Dialog ref={dialogRef}>
+      <Dialog ref={dialogRef} showFooter>
         <EmojiPicker onEmojiClick={handleEmojiClick} />
       </Dialog>
     </div>
