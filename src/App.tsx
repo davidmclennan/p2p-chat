@@ -83,10 +83,10 @@ function App() {
             </Show>
           </form>
         </div>
-        <Dialog ref={dialogRef}>
-          <EmojiPicker onEmojiClick={handleEmojiClick} />
-        </Dialog>
       </main>
+      <Dialog ref={dialogRef}>
+        <EmojiPicker onEmojiClick={handleEmojiClick} />
+      </Dialog>
     </div>
   );
 }
