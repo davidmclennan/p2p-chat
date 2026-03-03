@@ -1,12 +1,12 @@
 import { ParentComponent } from "solid-js";
 
 interface DialogProps {
-  modal?: boolean;
+  ref: HTMLDialogElement;
 }
 
 const Dialog: ParentComponent<DialogProps> = (props) => {
   return (
-    <dialog class="fixed bg-surface rounded-xl dark:text-white p-8">
+    <dialog ref={props.ref} class="bg-surface rounded-xl p-8 dark:text-white">
       {props.children}
     </dialog>
   );

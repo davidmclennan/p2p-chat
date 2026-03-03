@@ -16,7 +16,7 @@ import Sidebar from "./components/Sidebar";
 function App() {
   const [messages, setMessages] = createSignal<Array<MessageProps>>();
   const [inputText, setInputText] = createSignal<string>("");
-  const [showEmojiPicker, setShowEmojiPicker] = createSignal<boolean>(false);
+  let dialogRef: HTMLDialogElement;
 
   const sendMessage = (message: MessageProps) => {
     invoke("send_message", {
@@ -45,7 +45,7 @@ function App() {
 
   const handleEmojiClick = (emoji: Emoji) => {
     setInputText(inputText() + emoji.emoji);
-    setShowEmojiPicker(false);
+    dialogRef?.close();
   };
 
   return (
@@ -73,10 +73,7 @@ function App() {
             <Button type="text">
               <IconPaperclip />
             </Button>
-            <Button
-              type="text"
-              onClick={() => setShowEmojiPicker(!showEmojiPicker())}
-            >
+            <Button type="text" onClick={() => dialogRef?.showModal()}>
               <IconMoodNeutral />
             </Button>
             <Show when={inputText()}>
@@ -86,7 +83,7 @@ function App() {
             </Show>
           </form>
         </div>
-        <Dialog>
+        <Dialog ref={dialogRef}>
           <EmojiPicker onEmojiClick={handleEmojiClick} />
         </Dialog>
       </main>
