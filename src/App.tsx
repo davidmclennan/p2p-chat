@@ -5,6 +5,8 @@ import Message, { MessageProps } from "./components/Message";
 import Input from "./components/Input";
 import Button from "./components/Button";
 import {
+  IconUser,
+  IconFlame,
   IconSend2,
   IconPaperclip,
   IconMoodNeutral,
@@ -14,6 +16,7 @@ import Dialog from "./components/Dialog";
 import Sidebar from "./components/Sidebar";
 
 function App() {
+  const [showUserDialog, setShowUserDialog] = createSignal<boolean>(false);
   const [messages, setMessages] = createSignal<Array<MessageProps>>();
   const [inputText, setInputText] = createSignal<string>("");
   const [showEmojiDialog, setShowEmojiDialog] = createSignal<boolean>(false);
@@ -51,8 +54,16 @@ function App() {
   return (
     <div class="bg-canvas flex w-screen h-screen">
       <Sidebar />
-      <main class="flex-1">
-        <div class="flex flex-col h-full p-8 gap-8">
+      <main class="flex flex-col flex-1">
+        <div class="flex gap-4 flex-row-reverse p-4 border-b-1 border-zinc-800 mx-4">
+          <Button type="text" onClick={() => setShowUserDialog(true)}>
+            <IconUser />
+          </Button>
+          <Button type="text">
+            <IconFlame />
+          </Button>
+        </div>
+        <div class="flex flex-col p-8 gap-8">
           <ul class="overflow-y-auto">
             <For each={messages()}>
               {(item) => (
@@ -66,7 +77,7 @@ function App() {
             </For>
           </ul>
           <form
-            class="flex gap-2 bg-surface p-4 rounded-xl mt-auto"
+            class="flex gap-2 bg-surface p-4 rounded-xl"
             onSubmit={handleSubmit}
           >
             <Input text={inputText()} onInput={setInputText} />
@@ -84,6 +95,18 @@ function App() {
           </form>
         </div>
       </main>
+      <Dialog
+        open={showUserDialog()}
+        onClose={() => setShowUserDialog(false)}
+        showFooter
+      >
+        <div class="flex flex-col gap-2 text-center">
+          <p>Your user ID is:</p>
+          <p class="text-2xl font-bold dark:text-white">
+            <strong>fake-user-id-number</strong>
+          </p>
+        </div>
+      </Dialog>
       <Dialog
         open={showEmojiDialog()}
         onClose={() => setShowEmojiDialog(false)}
