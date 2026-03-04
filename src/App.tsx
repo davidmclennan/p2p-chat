@@ -50,7 +50,7 @@ function App() {
       <Sidebar />
       <main class="flex flex-col flex-1">
         <ChatMenu setShowUserDialog={setShowUserDialog} />
-        <div class="flex flex-col p-8 gap-8">
+        <div class="flex flex-col flex-1 p-8 gap-8 min-h-0">
           <MessageList messages={messages()} />
           <ChatInput
             inputText={inputText()}
