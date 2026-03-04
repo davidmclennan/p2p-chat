@@ -1,16 +1,17 @@
 import "./App.css";
 import { invoke } from "@tauri-apps/api/core";
-import { createSignal, For } from "solid-js";
-import Message, { MessageProps } from "./components/Message";
+import { createSignal } from "solid-js";
+import { MessageProps } from "./components/Message";
 import { EmojiPicker, Emoji } from "solid-emoji-picker";
 import Dialog from "./components/Dialog";
 import Sidebar from "./components/Sidebar";
 import ChatMenu from "./components/ChatMenu";
 import ChatInput from "./components/ChatInput";
+import MessageList from "./components/MessageList";
 
 function App() {
   const [showUserDialog, setShowUserDialog] = createSignal<boolean>(false);
-  const [messages, setMessages] = createSignal<Array<MessageProps>>();
+  const [messages, setMessages] = createSignal<Array<MessageProps>>([]);
   const [inputText, setInputText] = createSignal<string>("");
   const [showEmojiDialog, setShowEmojiDialog] = createSignal<boolean>(false);
 
@@ -50,18 +51,7 @@ function App() {
       <main class="flex flex-col flex-1">
         <ChatMenu setShowUserDialog={setShowUserDialog} />
         <div class="flex flex-col p-8 gap-8">
-          <ul class="overflow-y-auto">
-            <For each={messages()}>
-              {(item) => (
-                <li>
-                  <Message
-                    username={item.username}
-                    messageBody={item.messageBody}
-                  />
-                </li>
-              )}
-            </For>
-          </ul>
+          <MessageList messages={messages()} />
           <ChatInput
             inputText={inputText()}
             setInputText={setInputText}
