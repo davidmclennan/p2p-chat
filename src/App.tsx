@@ -11,6 +11,7 @@ import MessageList from "./components/MessageList";
 
 function App() {
   const [showUserDialog, setShowUserDialog] = createSignal<boolean>(false);
+  const [showBurnDialog, setShowBurnDialog] = createSignal<boolean>(false);
   const [messages, setMessages] = createSignal<Array<MessageProps>>([]);
   const [inputText, setInputText] = createSignal<string>("");
   const [showEmojiDialog, setShowEmojiDialog] = createSignal<boolean>(false);
@@ -49,7 +50,10 @@ function App() {
     <div class="bg-canvas flex w-screen h-screen">
       <Sidebar />
       <main class="flex flex-col flex-1">
-        <ChatMenu setShowUserDialog={setShowUserDialog} />
+        <ChatMenu
+          setShowUserDialog={setShowUserDialog}
+          setShowBurnDialog={setShowBurnDialog}
+        />
         <div class="flex flex-col flex-1 p-8 gap-8 min-h-0">
           <MessageList messages={messages()} />
           <ChatInput
@@ -70,6 +74,20 @@ function App() {
           <p class="text-2xl font-bold dark:text-white">
             <strong>fake-user-id-number</strong>
           </p>
+        </div>
+      </Dialog>
+      <Dialog
+        open={showBurnDialog()}
+        onClose={() => setShowBurnDialog(false)}
+        showFooter
+      >
+        <div class="flex flex-col gap-4">
+          <p>Are you sure you want to burn this chat?</p>
+          <p>All messages will be lost and the session terminated.</p>
+          <div class="flex gap-2">
+            <input type="checkbox" id="burn-chat-checkbox" />
+            <label for="burn-chat-checkbox">Don't show again.</label>
+          </div>
         </div>
       </Dialog>
       <Dialog

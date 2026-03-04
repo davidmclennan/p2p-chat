@@ -7,7 +7,7 @@ interface MessageListProps {
 
 const MessageList: Component<MessageListProps> = (props) => {
   return (
-    <ul class="overflow-y-auto">
+    <ul class="overflow-y-auto flex-1">
       <For each={props.messages}>
         {(item) => (
           <li>

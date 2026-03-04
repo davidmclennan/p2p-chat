@@ -4,6 +4,7 @@ import { IconUser, IconFlame } from "@tabler/icons-solidjs";
 
 interface ChatMenuProps {
   setShowUserDialog: (_value: boolean) => void;
+  setShowBurnDialog: (_value: boolean) => void;
 }
 
 const ChatMenu: Component<ChatMenuProps> = (props) => {
@@ -12,7 +13,7 @@ const ChatMenu: Component<ChatMenuProps> = (props) => {
       <Button type="text" onClick={() => props.setShowUserDialog(true)}>
         <IconUser />
       </Button>
-      <Button type="text">
+      <Button type="text" onClick={() => props.setShowBurnDialog(true)}>
         <IconFlame />
       </Button>
     </div>
