@@ -1,18 +1,12 @@
 import "./App.css";
 import { invoke } from "@tauri-apps/api/core";
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, For } from "solid-js";
 import Message, { MessageProps } from "./components/Message";
-import Input from "./components/Input";
-import Button from "./components/Button";
-import {
-  IconSend2,
-  IconPaperclip,
-  IconMoodNeutral,
-} from "@tabler/icons-solidjs";
 import { EmojiPicker, Emoji } from "solid-emoji-picker";
 import Dialog from "./components/Dialog";
 import Sidebar from "./components/Sidebar";
 import ChatMenu from "./components/ChatMenu";
+import ChatInput from "./components/ChatInput";
 
 function App() {
   const [showUserDialog, setShowUserDialog] = createSignal<boolean>(false);
@@ -68,23 +62,12 @@ function App() {
               )}
             </For>
           </ul>
-          <form
-            class="flex gap-2 bg-surface p-4 rounded-xl"
-            onSubmit={handleSubmit}
-          >
-            <Input text={inputText()} onInput={setInputText} />
-            <Button type="text">
-              <IconPaperclip />
-            </Button>
-            <Button type="text" onClick={() => setShowEmojiDialog(true)}>
-              <IconMoodNeutral />
-            </Button>
-            <Show when={inputText()}>
-              <Button type="filled" submit>
-                <IconSend2 />
-              </Button>
-            </Show>
-          </form>
+          <ChatInput
+            inputText={inputText()}
+            setInputText={setInputText}
+            setShowEmojiDialog={setShowEmojiDialog}
+            handleSubmit={handleSubmit}
+          />
         </div>
       </main>
       <Dialog
