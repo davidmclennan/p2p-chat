@@ -5,8 +5,6 @@ import Message, { MessageProps } from "./components/Message";
 import Input from "./components/Input";
 import Button from "./components/Button";
 import {
-  IconUser,
-  IconFlame,
   IconSend2,
   IconPaperclip,
   IconMoodNeutral,
@@ -14,6 +12,7 @@ import {
 import { EmojiPicker, Emoji } from "solid-emoji-picker";
 import Dialog from "./components/Dialog";
 import Sidebar from "./components/Sidebar";
+import ChatMenu from "./components/ChatMenu";
 
 function App() {
   const [showUserDialog, setShowUserDialog] = createSignal<boolean>(false);
@@ -55,14 +54,7 @@ function App() {
     <div class="bg-canvas flex w-screen h-screen">
       <Sidebar />
       <main class="flex flex-col flex-1">
-        <div class="flex gap-4 flex-row-reverse p-4 border-b-1 border-zinc-800 mx-4">
-          <Button type="text" onClick={() => setShowUserDialog(true)}>
-            <IconUser />
-          </Button>
-          <Button type="text">
-            <IconFlame />
-          </Button>
-        </div>
+        <ChatMenu setShowUserDialog={setShowUserDialog} />
         <div class="flex flex-col p-8 gap-8">
           <ul class="overflow-y-auto">
             <For each={messages()}>
