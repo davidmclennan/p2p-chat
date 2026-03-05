@@ -21,14 +21,17 @@ const ChatInput: Component<ChatInputProps> = (props) => {
       onSubmit={props.handleSubmit}
     >
       <Input text={props.inputText} onInput={props.setInputText} />
-      <Button type="text">
+      <Button variant="icon_text">
         <IconPaperclip />
       </Button>
-      <Button type="text" onClick={() => props.setShowEmojiDialog(true)}>
+      <Button
+        variant="icon_text"
+        onClick={() => props.setShowEmojiDialog(true)}
+      >
         <IconMoodNeutral />
       </Button>
       <Show when={props.inputText}>
-        <Button type="filled" submit>
+        <Button variant="icon_filled" submit>
           <IconSend2 />
         </Button>
       </Show>

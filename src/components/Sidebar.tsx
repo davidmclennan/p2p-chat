@@ -10,7 +10,7 @@ const Sidebar: Component<SidebarProps> = () => {
       <h2 class="dark:text-white">Online</h2>
       <p class="dark:text-gray-400">No users online.</p>
       <div class="mt-auto">
-        <Button type="text">
+        <Button variant="icon_text">
           <IconSettings />
         </Button>
       </div>

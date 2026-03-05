@@ -10,10 +10,10 @@ interface ChatMenuProps {
 const ChatMenu: Component<ChatMenuProps> = (props) => {
   return (
     <div class="flex gap-4 flex-row-reverse p-4 border-b-1 border-zinc-800 mx-4">
-      <Button type="text" onClick={() => props.setShowUserDialog(true)}>
+      <Button variant="icon_text" onClick={() => props.setShowUserDialog(true)}>
         <IconUser />
       </Button>
-      <Button type="text" onClick={() => props.setShowBurnDialog(true)}>
+      <Button variant="icon_text" onClick={() => props.setShowBurnDialog(true)}>
         <IconFlame />
       </Button>
     </div>

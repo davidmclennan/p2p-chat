@@ -1,19 +1,24 @@
 import { ParentComponent } from "solid-js";
 
 interface ButtonProps {
-  type: "filled" | "text";
+  variant: "filled" | "text" | "icon_filled" | "icon_text";
   submit?: boolean;
   onClick?: () => void;
 }
 
+const VARIANT_CLASSES: Record<string, string> = {
+  filled: "bg-brand hover:bg-brand-darker text-white rounded-sm",
+  text: "bg-transparent text-gray-400 hover:bg-zinc-800 rounded-sm",
+  icon_filled: "bg-brand hover:bg-brand-darker text-white rounded-full",
+  icon_text: "bg-transparent text-gray-400 hover:bg-zinc-800 rounded-full",
+};
+
 const Button: ParentComponent<ButtonProps> = (props) => {
+  const className = `${VARIANT_CLASSES[props.variant]} font-bold py-2 px-4`;
+
   return (
     <button
-      class={`${
-        props.type === "filled"
-          ? "bg-brand hover:bg-brand-darker text-white"
-          : "bg-transparent text-gray-400 hover:text-gray-500"
-      } font-bold py-2 px-4 rounded-full`}
+      class={className}
       onClick={props.onClick}
       type={props.submit ? "submit" : "button"}
     >

@@ -28,6 +28,11 @@ function App() {
     );
   };
 
+  const handleBurnChat = () => {
+    setMessages([]);
+    setShowBurnDialog(false);
+  };
+
   const handleSubmit = (e: SubmitEvent) => {
     e.preventDefault();
     if (!inputText()) return;
@@ -64,11 +69,7 @@ function App() {
           />
         </div>
       </main>
-      <Dialog
-        open={showUserDialog()}
-        onClose={() => setShowUserDialog(false)}
-        showFooter
-      >
+      <Dialog open={showUserDialog()} onClose={() => setShowUserDialog(false)}>
         <div class="flex flex-col gap-2 text-center">
           <p>Your user ID is:</p>
           <p class="text-2xl font-bold dark:text-white">
@@ -78,8 +79,8 @@ function App() {
       </Dialog>
       <Dialog
         open={showBurnDialog()}
+        onConfirm={handleBurnChat}
         onClose={() => setShowBurnDialog(false)}
-        showFooter
       >
         <div class="flex flex-col gap-4">
           <p>Are you sure you want to burn this chat?</p>
@@ -93,7 +94,6 @@ function App() {
       <Dialog
         open={showEmojiDialog()}
         onClose={() => setShowEmojiDialog(false)}
-        showFooter
       >
         <EmojiPicker onEmojiClick={handleEmojiClick} />
       </Dialog>
