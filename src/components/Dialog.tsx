@@ -8,7 +8,6 @@ interface DialogProps {
 }
 
 const Dialog: ParentComponent<DialogProps> = (props) => {
-  // eslint-disable-next-line no-unassigned-vars
   let dialogRef: HTMLDialogElement | undefined;
 
   createEffect(() => {
@@ -21,7 +20,9 @@ const Dialog: ParentComponent<DialogProps> = (props) => {
 
   return (
     <dialog
-      ref={dialogRef}
+      ref={(el) => {
+        dialogRef = el;
+      }}
       class="bg-surface rounded-xl p-8 shadow-lg max-w-lg backdrop:bg-black/50 backdrop:backdrop-blur-md dark:text-white m-auto"
     >
       <div class="overflow-y-auto max-h-80">{props.children}</div>
