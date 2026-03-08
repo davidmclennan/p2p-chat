@@ -15,6 +15,7 @@ use tauri::{Builder, Manager};
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    // Move this to tauri setup to avoid blocking the main thread with iroh startup
     let id = tauri::async_runtime::block_on(async {
         match iroh_startup().await {
             Ok(id) => id,

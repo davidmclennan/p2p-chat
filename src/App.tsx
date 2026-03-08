@@ -1,6 +1,6 @@
 import "./App.css";
 import { invoke } from "@tauri-apps/api/core";
-import { createSignal } from "solid-js";
+import { createSignal, onMount } from "solid-js";
 import { MessageProps } from "./components/Message";
 import { EmojiPicker, Emoji } from "solid-emoji-picker";
 import Dialog from "./components/Dialog";
@@ -8,6 +8,7 @@ import Sidebar from "./components/Sidebar";
 import ChatMenu from "./components/ChatMenu";
 import ChatInput from "./components/ChatInput";
 import MessageList from "./components/MessageList";
+import { User } from "./types";
 
 function App() {
   const [showUserDialog, setShowUserDialog] = createSignal<boolean>(false);
@@ -15,10 +16,17 @@ function App() {
   const [messages, setMessages] = createSignal<Array<MessageProps>>([]);
   const [inputText, setInputText] = createSignal<string>("");
   const [showEmojiDialog, setShowEmojiDialog] = createSignal<boolean>(false);
+  const [user, setUser] = createSignal<User | null>(null);
 
   const sendMessage = (message: MessageProps) => {
     invoke("send_message", {
       message: message,
+    });
+  };
+
+  const get_user = () => {
+    invoke<User>("get_user").then((response) => {
+      setUser(response);
     });
   };
 
@@ -51,6 +59,10 @@ function App() {
     setShowEmojiDialog(false);
   };
 
+  onMount(async () => {
+    get_user();
+  });
+
   return (
     <div class="bg-canvas flex w-screen h-screen">
       <Sidebar />
@@ -73,7 +85,7 @@ function App() {
         <div class="flex flex-col gap-2 text-center">
           <p>Your user ID is:</p>
           <p class="text-2xl font-bold dark:text-white">
-            <strong>fake-user-id-number</strong>
+            <strong>{user()?.id}</strong>
           </p>
         </div>
       </Dialog>
