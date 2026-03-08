@@ -1,8 +1,9 @@
 import { Component, For } from "solid-js";
-import Message, { MessageProps } from "./Message";
+import Message from "./Message";
+import { Message as MessageType } from "../types";
 
 interface MessageListProps {
-  messages: Array<MessageProps>;
+  messages: Array<MessageType>;
 }
 
 const MessageList: Component<MessageListProps> = (props) => {

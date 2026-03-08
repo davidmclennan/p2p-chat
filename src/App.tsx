@@ -1,24 +1,23 @@
 import "./App.css";
 import { invoke } from "@tauri-apps/api/core";
 import { createSignal, onMount } from "solid-js";
-import { MessageProps } from "./components/Message";
 import { EmojiPicker, Emoji } from "solid-emoji-picker";
 import Dialog from "./components/Dialog";
 import Sidebar from "./components/Sidebar";
 import ChatMenu from "./components/ChatMenu";
 import ChatInput from "./components/ChatInput";
 import MessageList from "./components/MessageList";
-import { User } from "./types";
+import { User, Message } from "./types";
 
 function App() {
   const [showUserDialog, setShowUserDialog] = createSignal<boolean>(false);
   const [showBurnDialog, setShowBurnDialog] = createSignal<boolean>(false);
-  const [messages, setMessages] = createSignal<Array<MessageProps>>([]);
+  const [messages, setMessages] = createSignal<Array<Message>>([]);
   const [inputText, setInputText] = createSignal<string>("");
   const [showEmojiDialog, setShowEmojiDialog] = createSignal<boolean>(false);
   const [user, setUser] = createSignal<User | null>(null);
 
-  const sendMessage = (message: MessageProps) => {
+  const sendMessage = (message: Message) => {
     invoke("send_message", {
       message: message,
     });
@@ -31,7 +30,7 @@ function App() {
   };
 
   const getMessages = () => {
-    invoke<Array<MessageProps>>("get_messages").then((response) =>
+    invoke<Array<Message>>("get_messages").then((response) =>
       setMessages(response),
     );
   };
